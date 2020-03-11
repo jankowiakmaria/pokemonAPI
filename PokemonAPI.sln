@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonAPI", "PokemonAPI\PokemonAPI.csproj", "{2BCB6ABB-6232-4BD9-88C3-E9E648BFD414}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonAPITest", "PokemonAPITest\PokemonAPITest.csproj", "{A1BB749F-4BD1-4290-8A47-EC9CAF213DD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonAPITests", "PokemonAPITest\PokemonAPITests.csproj", "{A1BB749F-4BD1-4290-8A47-EC9CAF213DD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

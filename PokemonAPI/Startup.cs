@@ -1,15 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using PokemonAPI.Services;
 
 namespace PokemonAPI
 {
@@ -26,6 +21,13 @@ namespace PokemonAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddHttpClient<IPokemonService, PokemonService>(client =>
+            {
+                client.BaseAddress = new Uri(Configuration["BaseUrl"]);
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                client.DefaultRequestHeaders.Add("User-Agent", "Pokemon API");
+            }); //todo: add policies
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
