@@ -24,9 +24,16 @@ namespace PokemonAPI
 
             services.AddHttpClient<IPokemonService, PokemonService>(client =>
             {
-                client.BaseAddress = new Uri(Configuration["BaseUrl"]);
+                client.BaseAddress = new Uri(Configuration["Services.Pokemon"]);
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 client.DefaultRequestHeaders.Add("User-Agent", "Pokemon API");
+            }); //todo: add policies
+
+            services.AddHttpClient<ITranslatorService, ShakespeareTranslatorService>(client =>
+            {
+                client.BaseAddress = new Uri(Configuration["Services.Translator"]);
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                client.DefaultRequestHeaders.Add("User-Agent", "Pokemon API");  //todo: extract user agent
             }); //todo: add policies
         }
 
