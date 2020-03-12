@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace PokemonAPITests.Unit
 {
     [TestClass]
-    public class PokemonTest
+    public class PokemonTests
     {
         private const string _knownDescription = "english pokemon description";
         private const string _knownName = "charizard";

@@ -4,7 +4,7 @@ using PokemonAPI.Attributes;
 namespace PokemonAPITest
 {
     [TestClass]
-    public class NotNullOrWhitespaceStringTest
+    public class NotNullOrWhitespaceStringTests
     {
         [DataTestMethod]
         [DataRow(null, false)]

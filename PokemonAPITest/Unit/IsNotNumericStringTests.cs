@@ -4,7 +4,7 @@ using PokemonAPI.Attributes;
 namespace PokemonAPITest
 {
     [TestClass]
-    public class IsNotNumericStringTest
+    public class IsNotNumericStringTests
     {
         [DataTestMethod]
         [DataRow(null, true)]
