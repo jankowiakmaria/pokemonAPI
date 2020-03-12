@@ -1,22 +1,31 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 
 namespace PokemonAPI.Clients
 {
     public abstract class Result
     {
-        private HttpResponseMessage errorResult;
+        public ErrorResultContent ErrorResult { get; private set; }
 
-        public bool Succeeded => errorResult is null;
-        public bool Failed => errorResult != null;
+        public HttpStatusCode StatusCode => ErrorResult.StatusCode;
+        public string ErrorMessage => ErrorResult.ErrorMessage;
+
+        public bool Succeeded => ErrorResult is null;
+        public bool Failed => ErrorResult != null;
 
         protected Result()
         {
-            errorResult = null;
+            ErrorResult = null;
         }
 
         protected Result(HttpResponseMessage errorResult)
         {
-            this.errorResult = errorResult;
+            ErrorResult = new ErrorResultContent(errorResult);
+        }
+
+        protected Result(ErrorResultContent errorResult)
+        {
+            ErrorResult = errorResult;
         }
 
         private class Success : Result { }
@@ -24,6 +33,18 @@ namespace PokemonAPI.Clients
         private class Error : Result
         {
             public Error(HttpResponseMessage errorResult) : base(errorResult) { }
+            public Error(ErrorResultContent errorResult) : base(errorResult) { }
+        }
+
+        public class ErrorResultContent
+        {
+            public ErrorResultContent(HttpResponseMessage errorResult)
+            {
+                StatusCode = errorResult.StatusCode;
+                ErrorMessage = errorResult.ReasonPhrase;
+            }
+            public HttpStatusCode StatusCode { get; private set; }
+            public string ErrorMessage { get; private set; }
         }
 
         public static implicit operator Result(HttpResponseMessage errorResult) => new Error(errorResult);
@@ -37,11 +58,15 @@ namespace PokemonAPI.Clients
         }
 
         private Result(HttpResponseMessage errorResult) : base(errorResult) { }
+        private Result(ErrorResultContent errorResult) : base(errorResult) { }
 
         public T Value { get; private set; }
 
         public static implicit operator Result<T>(T value) => new Result<T>(value);
         public static implicit operator Result<T>(HttpResponseMessage errorResult) =>
             new Result<T>(errorResult);
+        public static implicit operator Result<T>(ErrorResultContent errorResult) =>
+            new Result<T>(errorResult);
+
     }
 }

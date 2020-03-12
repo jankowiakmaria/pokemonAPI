@@ -1,6 +1,8 @@
 using System;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -44,6 +46,18 @@ namespace PokemonAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler(new ExceptionHandlerOptions
+                {
+                    ExceptionHandler = async context =>
+                    {
+                        var exceptionHandlerPath = context.Features.Get<IExceptionHandlerPathFeature>();
+                        //should log exceptionHandlerPath?.Error?.Message
+                        await context.Response.WriteAsync("There is some internal problem.");
+                    }
+                });
             }
 
             app.UseHttpsRedirection();

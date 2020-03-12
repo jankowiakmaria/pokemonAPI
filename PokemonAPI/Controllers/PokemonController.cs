@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PokemonAPI.Clients;
 using PokemonAPI.Entities;
 using PokemonAPI.Extensions;
 using PokemonAPI.Services;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace PokemonAPI.Controllers
@@ -16,10 +18,35 @@ namespace PokemonAPI.Controllers
 
         // GET: pokemon/charizard
         [HttpGet("{name}", Name = "Get")]
-        public async Task<ShakespearePokemon> Get(
+        public async Task<ActionResult<ShakespearePokemon>> Get(
             [NotNullOrWhiteSpaceString][NotNumericString] string name)
         {
-            return await _pokemonService.GetPokemon(name);
+            var pokemonResult = await _pokemonService.GetPokemon(name);
+
+            if(pokemonResult.Succeeded)
+            {
+                return pokemonResult.Value;
+            }
+
+            return HandleFailure(pokemonResult);
+        }
+
+        private ContentResult HandleFailure(Result<ShakespearePokemon> result) 
+        {
+            if(result.StatusCode == HttpStatusCode.NotFound || result.StatusCode == HttpStatusCode.TooManyRequests)
+            {
+                return new ContentResult
+                {
+                    StatusCode = (int?)result.StatusCode,
+                    Content = result.ErrorMessage
+                };
+            }
+
+            return new ContentResult
+            {
+                StatusCode = (int?)HttpStatusCode.InternalServerError,
+                Content = "There is an underlying service problem."
+            };
         }
     }
 }

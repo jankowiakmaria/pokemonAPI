@@ -1,10 +1,11 @@
-﻿using PokemonAPI.Entities;
+﻿using PokemonAPI.Clients;
+using PokemonAPI.Entities;
 using System.Threading.Tasks;
 
 namespace PokemonAPI.Services
 {
     public interface IPokemonService
     {
-        Task<ShakespearePokemon> GetPokemon(string name);
+        Task<Result<ShakespearePokemon>> GetPokemon(string name);
     }
 }
