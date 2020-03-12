@@ -18,7 +18,7 @@ namespace PokemonAPITest
         [DataRow(true, false)]
         public void Validates_the_Input(object input, bool expected)
         {
-            Assert.AreEqual(expected, new IsNotNumericStringAttribute().IsValid(input));
+            Assert.AreEqual(expected, new NotNumericStringAttribute().IsValid(input));
         }
     }
 }

@@ -17,7 +17,7 @@ namespace PokemonAPI.Controllers
         // GET: pokemon/charizard
         [HttpGet("{name}", Name = "Get")]
         public async Task<ShakespearePokemon> Get(
-            [NotNullOrWhiteSpaceString][IsNotNumericString] string name)
+            [NotNullOrWhiteSpaceString][NotNumericString] string name)
         {
             return await _pokemonService.GetPokemon(name);
         }

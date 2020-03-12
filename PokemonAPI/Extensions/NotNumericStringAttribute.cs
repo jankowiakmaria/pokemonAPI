@@ -2,7 +2,7 @@
 
 namespace PokemonAPI.Extensions
 {
-    public class IsNotNumericStringAttribute : ValidationAttribute
+    public class NotNumericStringAttribute : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
