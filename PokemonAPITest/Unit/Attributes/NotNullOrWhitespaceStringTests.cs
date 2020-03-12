@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PokemonAPI.Attributes;
 
-namespace PokemonAPITest
+namespace PokemonAPITests.Unit.Attributes
 {
     [TestClass]
     public class NotNullOrWhitespaceStringTests
