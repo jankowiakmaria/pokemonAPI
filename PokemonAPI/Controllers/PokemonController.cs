@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PokemonAPI.Entities;
+using PokemonAPI.Extensions;
 using PokemonAPI.Services;
-using System;
 using System.Threading.Tasks;
 
 namespace PokemonAPI.Controllers
@@ -16,7 +16,7 @@ namespace PokemonAPI.Controllers
 
         // GET: pokemon/charizard
         [HttpGet("{name}", Name = "Get")]
-        public async Task<ShakespearePokemon> Get(string name)
+        public async Task<ShakespearePokemon> Get([IsNotNumericString] string name)
         {
             return await _pokemonService.GetPokemon(name);
         }

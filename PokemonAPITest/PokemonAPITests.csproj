@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Unit\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PokemonAPI\PokemonAPI.csproj" />
   </ItemGroup>
 
