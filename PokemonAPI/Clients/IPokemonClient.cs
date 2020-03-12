@@ -1,8 +1,7 @@
-﻿using PokemonAPI.Clients;
-using PokemonAPI.Entities;
+﻿using PokemonAPI.Entities;
 using System.Threading.Tasks;
 
-namespace PokemonAPI.Services
+namespace PokemonAPI.Clients
 {
     public interface IPokemonClient
     {

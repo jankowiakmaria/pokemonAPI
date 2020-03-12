@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PokemonAPI.Clients.DTOs;
 using PokemonAPI.Entities;
-using PokemonAPI.Services.DTOs;
 using System.Collections.Generic;
 
 namespace PokemonAPITests.Unit

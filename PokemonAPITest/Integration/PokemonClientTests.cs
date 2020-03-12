@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PokemonAPI.Services;
+using PokemonAPI.Clients;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;

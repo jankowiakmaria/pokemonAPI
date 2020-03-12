@@ -1,4 +1,4 @@
-﻿using PokemonAPI.Services.DTOs;
+﻿using PokemonAPI.Clients.DTOs;
 using System.Linq;
 
 namespace PokemonAPI.Entities

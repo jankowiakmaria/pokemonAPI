@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PokemonAPI.Extensions;
+using PokemonAPI.Attributes;
 
 namespace PokemonAPITest
 {

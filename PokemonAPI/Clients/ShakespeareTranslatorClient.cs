@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
-using PokemonAPI.Clients;
+using PokemonAPI.Clients.DTOs;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace PokemonAPI.Services
+namespace PokemonAPI.Clients
 {
     public class ShakespeareTranslatorClient : ITranslatorClient
     {

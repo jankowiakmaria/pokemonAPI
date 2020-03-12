@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace PokemonAPI.Services
+namespace PokemonAPI.Clients.DTOs
 {
     public class ContentDto
     {

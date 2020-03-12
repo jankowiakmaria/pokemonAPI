@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
-using PokemonAPI.Clients;
+using PokemonAPI.Clients.DTOs;
 using PokemonAPI.Entities;
-using PokemonAPI.Services.DTOs;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace PokemonAPI.Services
+namespace PokemonAPI.Clients
 {
     public class PokemonClient : IPokemonClient
     {
@@ -13,7 +12,8 @@ namespace PokemonAPI.Services
 
         private readonly HttpClient _httpClient;
 
-        public PokemonClient(HttpClient httpClient) {
+        public PokemonClient(HttpClient httpClient)
+        {
             _httpClient = httpClient;
         }
 

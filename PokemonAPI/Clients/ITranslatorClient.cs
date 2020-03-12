@@ -1,7 +1,6 @@
-﻿using PokemonAPI.Clients;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace PokemonAPI.Services
+namespace PokemonAPI.Clients
 {
     public interface ITranslatorClient
     {

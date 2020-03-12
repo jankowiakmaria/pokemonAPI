@@ -1,6 +1,5 @@
 ﻿using PokemonAPI.Clients;
 using PokemonAPI.Entities;
-using System;
 using System.Threading.Tasks;
 
 namespace PokemonAPI.Services

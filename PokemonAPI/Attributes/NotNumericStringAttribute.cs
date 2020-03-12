@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PokemonAPI.Extensions
+namespace PokemonAPI.Attributes
 {
     public class NotNumericStringAttribute : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
-            if(value == null)
+            if (value == null)
             {
                 return true;
             }

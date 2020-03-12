@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace PokemonAPI.Services.DTOs
+namespace PokemonAPI.Clients.DTOs
 {
     public class PokemonDto
     {
