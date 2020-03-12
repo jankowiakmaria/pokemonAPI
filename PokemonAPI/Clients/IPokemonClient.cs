@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace PokemonAPI.Services
 {
-    public interface IPokemonService
+    public interface IPokemonClient
     {
-        Task<ShakespearePokemon> GetPokemon(string name);
+        Task<Pokemon> GetPokemon(string name);
     }
 }

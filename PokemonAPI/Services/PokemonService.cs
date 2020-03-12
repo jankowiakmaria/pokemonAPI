@@ -1,34 +1,34 @@
-﻿using Newtonsoft.Json;
-using PokemonAPI.Entities;
-using PokemonAPI.Services.DTOs;
-using System.Net.Http;
+﻿using PokemonAPI.Entities;
+using System;
 using System.Threading.Tasks;
 
 namespace PokemonAPI.Services
 {
     public class PokemonService : IPokemonService
     {
-        private static string _pokemonPath = "api/v2/pokemon-species/";
+        private readonly IPokemonClient _pokemonClient;
+        private readonly ITranslatorClient _translatorClient;
 
-        private readonly HttpClient _httpClient;
-
-        public PokemonService(HttpClient httpClient) {
-            _httpClient = httpClient;
+        public PokemonService(IPokemonClient pokemonClient, ITranslatorClient translatorClient)
+        {
+            _pokemonClient = pokemonClient;
+            _translatorClient = translatorClient;
         }
 
-        public async Task<Pokemon> GetPokemon(string name)
+        public async Task<ShakespearePokemon> GetPokemon(string name)
         {
-            var response = await _httpClient.GetAsync(_pokemonPath + name);
-
-            if (response.IsSuccessStatusCode)
+            var pokemon = await _pokemonClient.GetPokemon(name);
+            if(pokemon != null)
             {
-                var result = await response.Content.ReadAsStringAsync();
-                PokemonDto pokemonDto = JsonConvert.DeserializeObject<PokemonDto>(result);
-                return new Pokemon(pokemonDto, "en"); //todo: handle the language separately
+                var description = await _translatorClient.Translate(pokemon.Description);
+                if(description != null)
+                {
+                    return new ShakespearePokemon(pokemon, description);
+                }
             }
 
-            // ideally log warn before returning
             return null;
+            throw new NotImplementedException();
         }
     }
 }

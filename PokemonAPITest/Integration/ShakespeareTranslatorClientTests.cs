@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace PokemonAPITests.Integration
 {
     [TestClass]
-    public class ShakespeareTranslatorServiceTests
+    public class ShakespeareTranslatorClientTests
     {
         private readonly string _knownText = "Charizard flies around the sky in search of powerful opponents.";
 
-        private ShakespeareTranslatorService translatorService;
+        private ShakespeareTranslatorClient translatorClient;
 
         [TestInitialize]
         public void Setup()
@@ -21,13 +21,13 @@ namespace PokemonAPITests.Integration
             client.DefaultRequestHeaders.Add("Accept", "Application/json");
             client.DefaultRequestHeaders.Add("User-Agent", "Pokemon API");
 
-            translatorService = new ShakespeareTranslatorService(client);
+            translatorClient = new ShakespeareTranslatorClient(client);
         }
 
         [TestMethod]
         public async Task translates_text()
         {
-            var result = await translatorService.Translate(_knownText);
+            var result = await translatorClient.Translate(_knownText);
 
             Assert.IsNotNull(result);
         }

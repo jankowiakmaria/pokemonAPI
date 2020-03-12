@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace PokemonAPI.Services
 {
-    public class ShakespeareTranslatorService : ITranslatorService
+    public class ShakespeareTranslatorClient : ITranslatorClient
     {
         private static string _translatePath = "/translate/shakespeare.json";
 
         private readonly HttpClient _httpClient;
 
-        public ShakespeareTranslatorService(HttpClient httpClient)
+        public ShakespeareTranslatorClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

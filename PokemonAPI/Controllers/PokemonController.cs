@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
+using PokemonAPI.Entities;
+using PokemonAPI.Services;
+using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace PokemonAPI.Controllers
 {
@@ -11,18 +10,17 @@ namespace PokemonAPI.Controllers
     [ApiController]
     public class PokemonController : ControllerBase
     {
-        // GET: Pokemon
-        /*[HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }*/
+        private IPokemonService _pokemonService;
+
+        public PokemonController(IPokemonService pokemonService) => _pokemonService = pokemonService;
 
         // GET: pokemon/charizard
         [HttpGet("{name}", Name = "Get")]
-        public string Get(string name)
+        public async Task<ShakespearePokemon> Get(string name)
         {
-            return name;
+            return await _pokemonService.GetPokemon(name);
         }
+
+        //todo: argument validation
     }
 }

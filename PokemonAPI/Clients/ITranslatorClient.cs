@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PokemonAPI.Services
 {
-    interface ITranslatorService
+    public interface ITranslatorClient
     {
         Task<string> Translate(string input);
     }
