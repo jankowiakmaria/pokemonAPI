@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using PokemonAPI.Clients.DTOs;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -11,10 +12,12 @@ namespace PokemonAPI.Clients
         private static string _translatePath = "/translate/shakespeare.json";
 
         private readonly HttpClient _httpClient;
+        private readonly ILogger<ShakespeareTranslatorClient> _logger;
 
-        public ShakespeareTranslatorClient(HttpClient httpClient)
+        public ShakespeareTranslatorClient(HttpClient httpClient, ILogger<ShakespeareTranslatorClient> logger)
         {
             _httpClient = httpClient;
+            _logger = logger;
         }
 
         public async Task<Result<string>> Translate(string input)
@@ -33,7 +36,7 @@ namespace PokemonAPI.Clients
                 return translationDto.Content.Translated;
             }
 
-            // ideally log warn before returning
+            _logger.LogWarning("The text {input} could not be translated; reason: {reason}", input?.Substring(0, 10), response.ReasonPhrase);
             return response;
         }
     }

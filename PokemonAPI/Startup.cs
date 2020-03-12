@@ -31,14 +31,14 @@ namespace PokemonAPI
                 client.BaseAddress = new Uri(Configuration["Clients:Pokemon"]);
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 client.DefaultRequestHeaders.Add("User-Agent", Configuration["Name"]);
-            }); //todo: add policies
+            });
 
             services.AddHttpClient<ITranslatorClient, ShakespeareTranslatorClient>(client =>
             {
                 client.BaseAddress = new Uri(Configuration["Clients:Translator"]);
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 client.DefaultRequestHeaders.Add("User-Agent", Configuration["Name"]);
-            }); //todo: add policies
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

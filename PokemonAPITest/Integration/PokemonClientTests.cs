@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using PokemonAPI.Clients;
 using System;
 using System.Net.Http;
@@ -22,7 +24,7 @@ namespace PokemonAPITests.Integration
             client.DefaultRequestHeaders.Add("Accept", "Application/json");
             client.DefaultRequestHeaders.Add("User-Agent", "Pokemon API");
 
-            pokemonClient = new PokemonClient(client);
+            pokemonClient = new PokemonClient(client, Mock.Of<ILogger<PokemonClient>>());
         }
 
         [TestMethod]

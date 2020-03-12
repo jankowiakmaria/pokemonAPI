@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using PokemonAPI.Clients.DTOs;
 using PokemonAPI.Entities;
 using System.Net.Http;
@@ -11,10 +12,12 @@ namespace PokemonAPI.Clients
         private static string _pokemonPath = "api/v2/pokemon-species/";
 
         private readonly HttpClient _httpClient;
+        private readonly ILogger _logger;
 
-        public PokemonClient(HttpClient httpClient)
+        public PokemonClient(HttpClient httpClient, ILogger<PokemonClient> logger)
         {
             _httpClient = httpClient;
+            _logger = logger;
         }
 
         public async Task<Result<Pokemon>> GetPokemon(string name)
@@ -28,7 +31,7 @@ namespace PokemonAPI.Clients
                 return new Pokemon(pokemonDto);
             }
 
-            // ideally log warn before returning
+            _logger.LogWarning("The pokemon named '{name}' could not be retrieved; reason: {reason}", name, response.ReasonPhrase);
             return response;
         }
     }
