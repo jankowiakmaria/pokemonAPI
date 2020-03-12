@@ -4,6 +4,7 @@ using PokemonAPI.Clients.DTOs;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using static PokemonAPI.Clients.Result;
 
 namespace PokemonAPI.Clients
 {
@@ -37,7 +38,7 @@ namespace PokemonAPI.Clients
             }
 
             _logger.LogWarning("The text {input} could not be translated; reason: {reason}", input?.Substring(0, 10), response.ReasonPhrase);
-            return response;
+            return new ErrorResultContent(response.StatusCode, response.ReasonPhrase);
         }
     }
 }

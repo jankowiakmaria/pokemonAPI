@@ -4,6 +4,7 @@ using PokemonAPI.Clients.DTOs;
 using PokemonAPI.Entities;
 using System.Net.Http;
 using System.Threading.Tasks;
+using static PokemonAPI.Clients.Result;
 
 namespace PokemonAPI.Clients
 {
@@ -32,7 +33,7 @@ namespace PokemonAPI.Clients
             }
 
             _logger.LogWarning("The pokemon named '{name}' could not be retrieved; reason: {reason}", name, response.ReasonPhrase);
-            return response;
+            return new ErrorResultContent(response.StatusCode, response.ReasonPhrase);
         }
     }
 }

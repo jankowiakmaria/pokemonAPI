@@ -47,5 +47,19 @@ namespace PokemonAPITests.Unit
             Assert.AreEqual(_knownName, pokemon.Name);
             Assert.AreEqual(string.Empty, pokemon.Description);
         }
+
+        [TestMethod]
+        public void returns_correct_name_and_empty_description_when_entries_provided_in_dto()
+        {
+            var dto = new PokemonDto
+            {
+                Name = _knownName
+            };
+
+            var pokemon = new Pokemon(dto);
+
+            Assert.AreEqual(_knownName, pokemon.Name);
+            Assert.AreEqual(string.Empty, pokemon.Description);
+        }
     }
 }

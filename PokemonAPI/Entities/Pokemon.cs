@@ -11,7 +11,7 @@ namespace PokemonAPI.Entities
         {
             Name = pokemonDto.Name;
             Description = pokemonDto
-                .TextEntries
+                .TextEntries?
                 .FirstOrDefault(t => t.Language.Name == _language)?.Text ?? string.Empty;
         }
 
