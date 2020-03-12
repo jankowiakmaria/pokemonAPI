@@ -25,11 +25,12 @@ namespace PokemonAPITests.Integration
         }
 
         [TestMethod]
-        public async Task translates_text()
+        public async Task translates_text_successfully()
         {
             var result = await translatorClient.Translate(_knownText);
 
-            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Succeeded);
+            Assert.IsNotNull(result.Value);
         }
     }
 }

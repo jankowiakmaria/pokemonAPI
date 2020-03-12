@@ -26,20 +26,22 @@ namespace PokemonAPITests.Integration
         }
 
         [TestMethod]
-        public async Task deserializes_response_from_the_service_when_pokemon_exists()
+        public async Task is_successful_when_pokemon_exists()
         {
             var result = await pokemonClient.GetPokemon(_knownPokemon);
 
-            Assert.AreEqual(_knownPokemon, result.Name);
-            Assert.IsNotNull(result.Description);
+            Assert.IsTrue(result.Succeeded);
+            Assert.AreEqual(_knownPokemon, result.Value.Name);
+            Assert.IsNotNull(result.Value.Description);
         }
 
         [TestMethod]
-        public async Task returns_null_when_pokemon_does_not_exist()
+        public async Task fails_when_pokemon_does_not_exist()
         {
             var result = await pokemonClient.GetPokemon(_notExistingPokemon);
 
-            Assert.IsNull(result);
+            Assert.IsTrue(result.Failed);
+            Assert.IsNull(result.Value);
         }
     }
 }

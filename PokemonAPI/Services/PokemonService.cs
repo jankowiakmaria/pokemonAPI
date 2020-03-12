@@ -1,4 +1,5 @@
-﻿using PokemonAPI.Entities;
+﻿using PokemonAPI.Clients;
+using PokemonAPI.Entities;
 using System;
 using System.Threading.Tasks;
 
@@ -17,18 +18,20 @@ namespace PokemonAPI.Services
 
         public async Task<ShakespearePokemon> GetPokemon(string name)
         {
-            var pokemon = await _pokemonClient.GetPokemon(name);
-            if(pokemon != null)
+            var pokemonResult = await _pokemonClient.GetPokemon(name);
+            if (pokemonResult.Failed)
             {
-                var description = await _translatorClient.Translate(pokemon.Description);
-                if(description != null)
-                {
-                    return new ShakespearePokemon(pokemon, description);
-                }
+                return null; // todo: change to proper code
             }
 
-            return null;
-            throw new NotImplementedException();
+            var pokemon = pokemonResult.Value;
+            var descriptionResult = await _translatorClient.Translate(pokemon.Description);
+            if (descriptionResult.Failed)
+            {
+                return null; //do something meaningfull
+            }
+
+            return new ShakespearePokemon(pokemon, descriptionResult.Value);
         }
     }
 }

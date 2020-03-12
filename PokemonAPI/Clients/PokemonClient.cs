@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PokemonAPI.Clients;
 using PokemonAPI.Entities;
 using PokemonAPI.Services.DTOs;
 using System.Net.Http;
@@ -16,7 +17,7 @@ namespace PokemonAPI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<Pokemon> GetPokemon(string name)
+        public async Task<Result<Pokemon>> GetPokemon(string name)
         {
             var response = await _httpClient.GetAsync(_pokemonPath + name);
 
@@ -28,7 +29,7 @@ namespace PokemonAPI.Services
             }
 
             // ideally log warn before returning
-            return null;
+            return response;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PokemonAPI.Clients;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace PokemonAPI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<string> Translate(string input)
+        public async Task<Result<string>> Translate(string input)
         {
             var formContent = new FormUrlEncodedContent(new[] {
                 new KeyValuePair<string, string>("text", input)
@@ -33,7 +34,7 @@ namespace PokemonAPI.Services
             }
 
             // ideally log warn before returning
-            return null;
+            return response;
         }
     }
 }
