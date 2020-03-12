@@ -5,10 +5,14 @@ namespace PokemonAPI.Entities
 {
     public class Pokemon
     {
-        public Pokemon(PokemonDto pokemonDto, string language)
+        private const string _language = "en";
+
+        public Pokemon(PokemonDto pokemonDto)
         {
             Name = pokemonDto.Name;
-            Description = pokemonDto.TextEntries.First(t => t.Language.Name == language).Text;
+            Description = pokemonDto
+                .TextEntries
+                .FirstOrDefault(t => t.Language.Name == _language)?.Text ?? string.Empty;
         }
 
         public string Name { get; private set; }

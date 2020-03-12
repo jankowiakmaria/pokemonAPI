@@ -24,7 +24,7 @@ namespace PokemonAPI.Services
             {
                 var result = await response.Content.ReadAsStringAsync();
                 PokemonDto pokemonDto = JsonConvert.DeserializeObject<PokemonDto>(result);
-                return new Pokemon(pokemonDto, "en"); //todo: handle the language separately
+                return new Pokemon(pokemonDto);
             }
 
             // ideally log warn before returning

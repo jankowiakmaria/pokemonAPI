@@ -21,7 +21,5 @@ namespace PokemonAPI.Controllers
         {
             return await _pokemonService.GetPokemon(name);
         }
-
-        //todo: argument validation
     }
 }
