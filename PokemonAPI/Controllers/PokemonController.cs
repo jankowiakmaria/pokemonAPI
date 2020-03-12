@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PokemonAPI.Attributes;
 using PokemonAPI.Clients;
 using PokemonAPI.Entities;
-using PokemonAPI.Extensions;
 using PokemonAPI.Services;
 using System.Net;
 using System.Threading.Tasks;
