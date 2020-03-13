@@ -55,13 +55,10 @@ namespace PokemonAPI
                     ExceptionHandler = async context =>
                     {
                         var exceptionHandlerPath = context.Features.Get<IExceptionHandlerPathFeature>();
-                        //should log exceptionHandlerPath?.Error?.Message
                         await context.Response.WriteAsync("There is some internal problem.");
                     }
                 });
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
